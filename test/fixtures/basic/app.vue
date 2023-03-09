@@ -2,23 +2,23 @@
   <div>
     <table>
       <thead>
-      <tr>
-        <th>Path</th>
-        <th>Popular</th>
-        <th>Trending</th>
-      </tr>
+        <tr>
+          <th>Path</th>
+          <th>Popular</th>
+          <th>Trending</th>
+        </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>{{ useRoute().path }}</td>
-        <td>{{ popular }}</td>
-        <td>{{ trending }}</td>
-      </tr>
-      <tr>
-        <td>/blog</td>
-        <td>{{ popularBlog }}</td>
-        <td>{{ trendingBlog }}</td>
-      </tr>
+        <tr>
+          <td>{{ useRoute().path }}</td>
+          <td>{{ popular }}</td>
+          <td>{{ trending }}</td>
+        </tr>
+        <tr>
+          <td>/blog</td>
+          <td>{{ popularBlog }}</td>
+          <td>{{ trendingBlog }}</td>
+        </tr>
       </tbody>
     </table>
     <div>

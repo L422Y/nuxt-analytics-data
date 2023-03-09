@@ -1,8 +1,8 @@
 {
-  "name": "nuxt-trending",
+  "name": "nuxt-analytics-data",
   "version": "1.0.0",
-  "description": "Nuxt Trending Pages Module",
-  "repository": "l422y/nuxt-trending",
+  "description": "Nuxt Analytics Data Module",
+  "repository": "l422y/nuxt-analytics-data",
   "license": "MIT",
   "type": "module",
   "packageManager": "pnpm@7.29.0",
@@ -30,7 +30,8 @@
   },
   "dependencies": {
     "@nuxt/kit": "^3.2.3",
-    "@google-analytics/data": "^3.2.1"
+    "@google-analytics/data": "^3.2.1",
+    "defu": "^6.1.2"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
