@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.2.3
+
+[compare changes](https://undefined/undefined/compare/v1.2.2...v1.2.3)
+
+
+### 🏡 Chore
+
+  - **docs:** Add additional usage documentation (0232b47)
+
+### ❤️  Contributors
+
+- Larry W ([@L422Y](http://github.com/L422Y))
+
 ## v1.2.2
 
 [compare changes](https://undefined/undefined/compare/v1.2.1...v1.2.2)
