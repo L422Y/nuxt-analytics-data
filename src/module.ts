@@ -12,8 +12,8 @@ export enum AnalyticsWidgetType {
 }
 
 export interface IFilterExpressions {
-  exact: string[]
-  regEx: string[]
+  exact?: string[]
+  regEx?: string[]
 }
 export interface ModuleOptions {
   /**
@@ -33,18 +33,17 @@ export interface ModuleOptions {
     auth_provider_x509_cert_url?: string
     client_x509_cert_url: string
   }
-  reports: { [key: string]: Function }
+  reports?: { [key: string]: Function }
   propertyId: string
-  endpoint: string
+  endpoint?: string
   /**
    * Get views for exact URLs, do not merge views for URLs that may or may not have a trailing slash
    */
   exact: boolean
-
   /**
-   * Array of relative paths to filter from the list
+   * Limit the maximum number of results (default: 20)
    */
-  limit: number
+  limit?: number
   filteredPaths?: IFilterExpressions
   removeStrings?: IFilterExpressions
 }
