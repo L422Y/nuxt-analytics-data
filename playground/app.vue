@@ -22,6 +22,19 @@
       </tbody>
     </table>
     <div>
+      <AnalyticsWidget
+        label="Trending Pages (24 hours)"
+        list-type="trending"
+        :show-views="false"
+      />
+      <AnalyticsWidget
+        label="Popular Pages (30 days)"
+        list-type="popular"
+        :show-views="true"
+
+      />
+    </div>
+    <div>
       <h2>Popular Data</h2>
       <ul>
         <li
@@ -46,8 +59,10 @@
   </div>
 </template>
 <script lang="ts" setup>
-import { useRoute } from "#app"
+import { useRoute, useState } from "#app"
 import { usePagePopular, usePageTrending, usePopular, useTrending } from "#imports"
+
+const $analyticsData = useState("analyticsData")
 
 const popular = await usePagePopular()
 const trending = await usePageTrending()
