@@ -6,7 +6,7 @@
 [![Nuxt][nuxt-src]][nuxt-href]
 
 This SSR-enabled Nuxt module allows running of reports via the Google Analytics Data API, and includes pre-defined
-reports and composables for trending and popular posts, as well as an AnalyticeWidget component for trending and popular
+reports and composables for trending and popular posts, as well as an AnalyticsWidget component for trending and popular
 posts.
 
 API responses are cached on the server side and expire
