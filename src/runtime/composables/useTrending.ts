@@ -1,27 +1,8 @@
-import { useNuxtApp, useRoute, useState } from "#app"
-import { ref } from "#imports"
-import { Ref, watch } from "vue"
-import { AnalyticsReport, AnalyticsSummary } from "../types"
+import { useState } from "#app"
+import { computed } from "vue"
+import { AnalyticsSummary } from "../../module"
 
-export const useTrending = async (path?: string | undefined) => {
-  if (!path) {
-    path = useRoute().path
-  }
-
-  if (path !== undefined) {
-    const response: Ref<AnalyticsReport> = ref()
-    const analyticsData = await useState<AnalyticsSummary>("analyticsData", () => ( {} ))
-
-    if (process.client) {
-      const unwatch = watch(analyticsData.value, (data: AnalyticsSummary) => {
-        response.value = data?.trending
-      })
-      useNuxtApp().hook("page:start", () => {
-        unwatch()
-      })
-    }
-
-    response.value = analyticsData?.value?.trending
-    return response
-  }
+export const useTrending = async () => {
+  const analyticsData = await useState<AnalyticsSummary>("analyticsData")
+  return computed(() => analyticsData?.value?.trending)
 }

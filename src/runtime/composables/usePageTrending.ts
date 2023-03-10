@@ -1,7 +1,7 @@
 import { useNuxtApp, useRoute, useRuntimeConfig, useState } from "#app"
 import { ref } from "#imports"
 import { Ref, watch } from "vue"
-import { AnalyticsSummary } from "../types"
+import { AnalyticsSummary } from "../../module"
 
 export const usePageTrending = async (path?: string | undefined) => {
   if (!path) {
