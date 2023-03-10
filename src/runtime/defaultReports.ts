@@ -19,6 +19,9 @@ export const defaultReports = {
         {
           name: "pagePath",
         },
+        {
+          name: "pageTitle",
+        },
       ],
       metrics: [
         {
@@ -53,7 +56,10 @@ export const defaultReports = {
       dimensions: [
         {
           name: "pagePath"
-        }
+        },
+        {
+          name: "pageTitle",
+        },
       ],
       metrics: [
         {

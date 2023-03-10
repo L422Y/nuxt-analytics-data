@@ -34,6 +34,8 @@ export interface ModuleOptions {
    */
   filteredPaths: string[]
   limit: number
+  removeStrings: string[]
+  removeStringsRegEx: string[]
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -48,7 +50,9 @@ export default defineNuxtModule<ModuleOptions>({
     filteredPaths: [],
     reports: {},
     cacheTimeout: 60 * 30,
-    limit: 20
+    limit: 20,
+    removeStrings: [],
+    removeStringsRegEx: []
   } as ModuleOptions,
   setup(options, nuxt) {
     const {resolve} = createResolver(import.meta.url)

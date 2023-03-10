@@ -37,7 +37,9 @@ export const useGoogleAnalyticsDataReports = async (config: any, analyticsCache:
   const summary: AnalyticsSummary = {}
 
   reports = {...defaultReports, ...reports}
-  console.info(reports)
+
+  const removeStrings = config.analyticsData?.removeStrings
+  const removeStringsRegEx = config.analyticsData?.removeStringsRegEx
 
   for (const [alias, report] of Object.entries(reports)) {
     const reportQuery = report({alias, propertyId, limit, filteredPaths})
@@ -53,16 +55,39 @@ export const useGoogleAnalyticsDataReports = async (config: any, analyticsCache:
 
     if (response && response.rows) {
       for (const row of response.rows) {
+
+        let pagePath = ""
+        const removals = [...removeStrings]
+        for (const toReplace of removeStringsRegEx) {
+          removals.unshift(new RegExp(toReplace))
+        }
+
         if (row && row.dimensionValues && row.dimensionValues.length > 0 && row.metricValues) {
-          let key = row.dimensionValues[0].value as string
-          if (!exact && key != "/") {
-            key = key.replace(/\/$/, "")
+          const item = {}
+          for (let idx = 0; idx < row.dimensionValues.length; idx++) {
+            const dimensionKey = <string>reportQuery.dimensions[idx].name
+            let dimensionValue = <string>row.dimensionValues[idx].value
+
+            for (const toReplace of removals) {
+              dimensionValue = dimensionValue.replace(toReplace, "")
+            }
+
+            if (dimensionKey === "pagePath") {
+              if (!exact && dimensionValue !== "/") {
+                dimensionValue = dimensionValue.replace(/\/$/, "")
+              }
+              pagePath = dimensionValue
+            } else {
+              item[dimensionKey] = dimensionValue
+            }
           }
-          if (key in results) {
-            results[key] += parseInt(row.metricValues[0].value)
-          } else {
-            results[key] = parseInt(row.metricValues[0].value)
+
+          for (let idx = 0; idx < row.metricValues.length; idx++) {
+            const metricKey = <string>reportQuery.metrics[idx].name
+            const metricValue = <string>row.metricValues[idx].value
+            item[metricKey] = metricValue
           }
+          results[pagePath] = item
         }
       }
     }

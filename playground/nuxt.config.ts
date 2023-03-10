@@ -1,4 +1,5 @@
 import NuxtAnalyticsData from "../src/module"
+
 export default defineNuxtConfig({
   modules: [
     NuxtAnalyticsData
@@ -9,11 +10,15 @@ export default defineNuxtConfig({
     filteredPaths: [
       "/blog",
       "/projects"
+    ],
+    removeStrings: [
+      ` - Larry Williamson`
+    ],
+    removeStringsRegEx: [
+      ` - .* - Larry Williamson`,
     ]
   },
-  runtimeConfig: {
-
-  }
+  runtimeConfig: {}
 })
 
 
