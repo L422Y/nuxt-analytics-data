@@ -5,7 +5,9 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-This SSR-enabled Nuxt module allows running of reports via the Google Analytics Data API, and includes pre-defined reports and composables for trending and popular posts, as well as an AnalyticeWidget component for trending and popular posts.
+This SSR-enabled Nuxt module allows running of reports via the Google Analytics Data API, and includes pre-defined
+reports and composables for trending and popular posts, as well as an AnalyticeWidget component for trending and popular
+posts.
 
 API responses are cached on the server side and expire
 
@@ -16,7 +18,9 @@ API responses are cached on the server side and expire
 - Trending and Popular reports, composables and a `AnalyticeWidget` component.
 
 ### TODO:
-- Ability to define your own reports: *this is partially implemented, need to figure out the best way to pass functions to the module from the configuration.*
+
+- Ability to define your own reports: *this is partially implemented, need to figure out the best way to pass functions
+  to the module from the configuration.*
 
 ## Quick Setup
 
@@ -44,6 +48,7 @@ export default defineNuxtConfig({
 ```
 
 3. Add configuration for the module:
+
 ```ts
 export default defineNuxtConfig({
   // ...
@@ -70,12 +75,82 @@ export default defineNuxtConfig({
       // and/or RegEx matches
       regEx: [` - .* - Larry Williamson`]
     }
-  // ...
-})
-
+    // ...
+  }
+});
 ```
 
 That's it! You can now use Nuxt Analytics Data Module in your Nuxt app ✨
+
+## Usage
+
+### `$analyticsData`
+
+The retrieved data is stored in `useState('analyticsData')` as well as provided in the Nuxt application
+as `$analyticsData`
+
+```ts
+const {$analyticsData} = useNuxtApp()
+
+const analyticsData = useState("analyticsData")
+
+```
+
+Data is formatted like this:
+
+```json
+
+{
+  "popular": {
+    "/blog": {
+      "pageTitle": "Blog",
+      "screenPageViews": "129"
+    },
+    "/blog/countdown-for-vue-with-composables": {
+      "pageTitle": "Building a Countdown Component for Vue with Composables",
+      "screenPageViews": "96"
+    }
+  },
+  "trending": {
+    "/": {
+      "pageTitle": "Home",
+      "screenPageViews": "999999"
+    }
+  }
+}
+
+```
+
+### `usePopular` and `useTrending` composables
+
+Provides the specific data from the analyticsData object
+
+```ts
+const allPopular = await usePopular()
+const allTrending = await useTrending()
+```
+
+### `usePagePopular` and `usePageTrending` composables
+
+Returns a boolean indicating whether a page is within popular or trending page lists.
+If no argument is supplied it uses the current route path.
+
+```vue
+<template>
+  <nav>
+    <NuxtLink :to="/blog">Blog<span v-if="trendingBlog"> 🔥</span></NuxtLink>
+  </nav>
+</template>
+<script lang="ts" setup>
+  const popular = await usePagePopular()
+  const trending = await usePageTrending()
+
+  const popularBlog = await usePagePopular("/blog")
+  const trendingBlog = await usePageTrending("/blog")
+</script>
+```
+
+Then
 
 ## Development
 
@@ -104,14 +179,19 @@ npm run release
 ```
 
 <!-- Badges -->
+
 [npm-version-src]: https://img.shields.io/npm/v/nuxt-analytics-data/latest.svg?style=flat&colorA=18181B&colorB=28CF8D
+
 [npm-version-href]: https://npmjs.com/package/nuxt-analytics-data
 
 [npm-downloads-src]: https://img.shields.io/npm/dm/nuxt-analytics-data.svg?style=flat&colorA=18181B&colorB=28CF8D
+
 [npm-downloads-href]: https://npmjs.com/package/nuxt-analytics-data
 
 [license-src]: https://img.shields.io/npm/l/nuxt-analytics-data.svg?style=flat&colorA=18181B&colorB=28CF8D
+
 [license-href]: https://npmjs.com/package/nuxt-analytics-data
 
 [nuxt-src]: https://img.shields.io/badge/Nuxt-18181B?logo=nuxt.js
+
 [nuxt-href]: https://nuxt.com
