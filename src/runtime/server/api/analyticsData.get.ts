@@ -24,7 +24,7 @@ export default defineEventHandler(async (event) => {
   const query: QueryObject = getQuery(event)
   let path: string = query.path as string
   const config = await useRuntimeConfig()
-  if (!config.exact && path != "/") {
+  if (!config.analyticsData.exact && path != "/") {
     path = path.replace(/\/$/, "")
   }
 
@@ -33,6 +33,9 @@ export default defineEventHandler(async (event) => {
   if (shouldRefresh) {
     trendingCache = await useGoogleAnalyticsDataReports(config, trendingCache)
     await storage.setItemRaw("cache:analyticsData", trendingCache)
+    setTimeout(async () => {
+      await storage.setItem("cache:analyticsDataCacheRefresh", true)
+    }, config.analyticsData.cacheTimeout * 1000)
   }
 
   if (trendingCache != null) {

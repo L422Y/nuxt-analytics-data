@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     NuxtAnalyticsData
   ],
   analyticsData: {
+    cacheTimeout: 15 * 60,
     credentialsFile: "./playground/src/google-service-account.json",
     propertyId: "331054024",
     filteredPaths: {
