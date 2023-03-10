@@ -28,6 +28,14 @@ export const defaultReports = {
           name: "screenPageViews",
         },
       ],
+      orderBys: [
+        {
+          metric: {
+            metricName: "screenPageViews"
+          },
+          desc: true
+        }
+      ]
     }
     if (Array.isArray(filteredPaths) && filteredPaths.length > 0) {
       query["dimensionFilter"] = {
@@ -66,6 +74,14 @@ export const defaultReports = {
           name: "screenPageViews"
         }
       ],
+      orderBys: [
+        {
+          metric: {
+            metricName: "screenPageViews"
+          },
+          desc: true
+        }
+      ]
     }
     if (Array.isArray(filteredPaths) && filteredPaths.length > 0) {
       query["dimensionFilter"] = {
