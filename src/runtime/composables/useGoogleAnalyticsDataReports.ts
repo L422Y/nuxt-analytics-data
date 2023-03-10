@@ -38,10 +38,22 @@ export const useGoogleAnalyticsDataReports = async (config: any, analyticsCache:
   reports = {...defaultReports, ...reports}
 
   const removeStrings = config.analyticsData?.removeStrings
-  const removeStringsRegEx = config.analyticsData?.removeStringsRegEx
+
+  // Build our expressions array once
+  const expressions = []
+  if (filteredPaths?.exact?.length > 0) {
+    expressions.push({filter: {fieldName: "pagePath", inListFilter: {values: filteredPaths.exact}}})
+  }
+  if (filteredPaths?.regEx?.length > 0) {
+    for (const regEx of filteredPaths.regEx) {
+      expressions.push({filter: {fieldName: "pagePath", stringFilter: {matchType: 5, value: regEx}}})
+    }
+  }
+
 
   for (const [alias, report] of Object.entries(reports)) {
-    const reportQuery = report({alias, propertyId, limit, filteredPaths})
+
+    const reportQuery = report({alias, propertyId, limit, filteredPaths, expressions})
     const response = await analyticsDataClient.runReport(reportQuery)
       .then((value) => {
         return value[0]
@@ -56,9 +68,16 @@ export const useGoogleAnalyticsDataReports = async (config: any, analyticsCache:
       for (const row of response.rows) {
 
         let pagePath = ""
-        const removals = [...removeStrings]
-        for (const toReplace of removeStringsRegEx) {
-          removals.unshift(new RegExp(toReplace))
+        let removals = []
+        if (removeStrings) {
+          if (removeStrings.exact?.length > 0) {
+            removals = [...removeStrings.exact]
+          }
+          if (removeStrings.regEx?.length > 0) {
+            for (const regEx of removeStrings.regEx) {
+              removals.unshift(new RegExp(regEx))
+            }
+          }
         }
 
         if (row && row.dimensionValues && row.dimensionValues.length > 0 && row.metricValues) {

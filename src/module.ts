@@ -1,8 +1,20 @@
-import { addPlugin, addServerHandler, createResolver, defineNuxtModule } from "@nuxt/kit"
+import { addComponent, addPlugin, addServerHandler, createResolver, defineNuxtModule } from "@nuxt/kit"
 import defu from "defu"
 import { fileURLToPath } from "node:url"
 import { defaultReports } from "./runtime/defaultReports"
 
+export type AnalyticsSummary = { [key: string]: AnalyticsReport }
+export type AnalyticsReport = { [key: string]: any }
+
+export enum AnalyticsWidgetType {
+  POPULAR = "popular",
+  TRENDING = "trending"
+}
+
+export interface IFilterExpressions {
+  exact: string[]
+  regEx: string[]
+}
 export interface ModuleOptions {
   /**
    * Half-life of cache (in seconds)
@@ -32,10 +44,9 @@ export interface ModuleOptions {
   /**
    * Array of relative paths to filter from the list
    */
-  filteredPaths: string[]
   limit: number
-  removeStrings: string[]
-  removeStringsRegEx: string[]
+  filteredPaths?: IFilterExpressions
+  removeStrings?: IFilterExpressions
 }
 
 export default defineNuxtModule<ModuleOptions>({
@@ -47,12 +58,9 @@ export default defineNuxtModule<ModuleOptions>({
     propertyId: "5555555",
     endpoint: "/api/analyticsData",
     exact: false,
-    filteredPaths: [],
     reports: {},
     cacheTimeout: 60 * 30,
-    limit: 20,
-    removeStrings: [],
-    removeStringsRegEx: []
+    limit: 20
   } as ModuleOptions,
   setup(options, nuxt) {
     const {resolve} = createResolver(import.meta.url)
@@ -78,8 +86,13 @@ export default defineNuxtModule<ModuleOptions>({
       dirs.push(resolve(runtimeDir, "composables"))
     })
 
+    addComponent({
+      name: "AnalyticsWidget",
+      filePath: resolve(runtimeDir, 'components', 'AnalyticsWidget.vue')
+    })
+
     // nuxt.hook("prepare:types", (options) => {
-    //   options.references.push({path: resolve(nuxt.options.buildDir, "types/trending.d.ts")})
+    //   options.references.push({path: resolve(nuxt.options.buildDir, "types/index.d.ts")})
     // })
   }
 })

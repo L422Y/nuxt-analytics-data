@@ -2,10 +2,11 @@ interface IQueryObjectOptions {
   propertyId: string
   limit: number
   filteredPaths?: string[]
+  expressions: any[]
 }
 
 export const defaultReports = {
-  popular: ({propertyId, limit, filteredPaths}: IQueryObjectOptions) => {
+  popular: ({propertyId, limit, expressions}: IQueryObjectOptions) => {
     const query = {
       property: `properties/${propertyId}`,
       limit,
@@ -37,21 +38,14 @@ export const defaultReports = {
         }
       ]
     }
-    if (Array.isArray(filteredPaths) && filteredPaths.length > 0) {
-      query["dimensionFilter"] = {
-        notExpression: {
-          filter: {
-            fieldName: "pagePath",
-            inListFilter: {
-              values: filteredPaths
-            }
-          }
-        }
-      }
+
+    if (expressions.length > 0) {
+      query["dimensionFilter"] = {notExpression: {orGroup: {expressions}}}
     }
+
     return query
   },
-  trending: ({propertyId, limit, filteredPaths}) => {
+  trending: ({propertyId, limit, expressions}) => {
     const query = {
       property: `properties/${propertyId}`,
       limit,
@@ -83,18 +77,11 @@ export const defaultReports = {
         }
       ]
     }
-    if (Array.isArray(filteredPaths) && filteredPaths.length > 0) {
-      query["dimensionFilter"] = {
-        notExpression: {
-          filter: {
-            fieldName: "pagePath",
-            inListFilter: {
-              values: filteredPaths
-            }
-          }
-        }
-      }
+
+    if (expressions.length > 0) {
+      query["dimensionFilter"] = {notExpression: {orGroup: {expressions}}}
     }
+
     return query
   }
 }

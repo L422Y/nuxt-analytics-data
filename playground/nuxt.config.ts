@@ -7,18 +7,16 @@ export default defineNuxtConfig({
   analyticsData: {
     credentialsFile: "./playground/src/google-service-account.json",
     propertyId: "331054024",
-    filteredPaths: [
-      "/blog",
-      "/projects"
-    ],
-    removeStrings: [
-      ` - Larry Williamson`
-    ],
-    removeStringsRegEx: [
-      ` - .* - Larry Williamson`,
-    ]
-  },
-  runtimeConfig: {}
+    filteredPaths: {
+      exact: ["/references"],
+      // Filter any first-level paths (i.e. "/blog" "/projects" "/subscribe/")
+      regEx: [`^/(\\w+)?\\/?$`]
+    },
+    removeStrings: {
+      exact: [` - Larry Williamson`],
+      regEx: [` - .* - Larry Williamson`]
+    }
+  }
 })
 
 
