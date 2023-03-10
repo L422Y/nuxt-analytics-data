@@ -5,15 +5,18 @@
 [![License][license-src]][license-href]
 [![Nuxt][nuxt-src]][nuxt-href]
 
-This module allows running of reports via the Google Analytics Data API, and includes pre-defined reports composables for trending and popular posts.
+This SSR-enabled Nuxt module allows running of reports via the Google Analytics Data API, and includes pre-defined reports and composables for trending and popular posts, as well as an AnalyticeWidget component for trending and popular posts.
+
+API responses are cached on the server side and expire
 
 ## Features
 
-- Filtering of paths from report data
-- Trending and Popular reports and composables
+- Filtering of paths (exact strings or RegEx) from report data, filtering parameters are supplied to the API
+- String removal (exact string or RegEx)
+- Trending and Popular reports, composables and a `AnalyticeWidget` component.
 
-## TODO:
-- Ability to define your own reports: *this is partially implemented, need to figure out the best way to pass functions to the module from the configuration.* 
+### TODO:
+- Ability to define your own reports: *this is partially implemented, need to figure out the best way to pass functions to the module from the configuration.*
 
 ## Quick Setup
 
@@ -38,6 +41,38 @@ export default defineNuxtConfig({
     'nuxt-analytics-data'
   ]
 })
+```
+
+3. Add configuration for the module:
+```ts
+export default defineNuxtConfig({
+  // ...
+  analyticsData: {
+    // Specify the path to your GA credentials file or use `credentials` with the data itself
+    credentialsFile: "./playground/src/google-service-account.json",
+    // The GA4 property ID you are accessing
+    propertyId: "331054024",
+    // Clear API response cache after 15 minutes (value is in seconds)
+    cacheTimeout: 15 * 60,
+    // Use `filteredPaths` to exclude paths from your query, i.e. if you
+    // don't want the homepage or contact page.
+    filteredPaths: {
+      // Exact path filters
+      exact: ["/references"],
+      // RegEx Path filters -- ex: filter any first-level paths (i.e. "/blog" "/projects")
+      regEx: [`^/(\\w+)?\\/?$`]
+    },
+
+    // removeStrings will remove any matching text from the pageTitles in results
+    removeStrings: {
+      // Exact matches, ex: removing trailing tags from the title
+      exact: [` - Larry Williamson`],
+      // and/or RegEx matches
+      regEx: [` - .* - Larry Williamson`]
+    }
+  // ...
+})
+
 ```
 
 That's it! You can now use Nuxt Analytics Data Module in your Nuxt app ✨

@@ -6,6 +6,21 @@
   "license": "MIT",
   "type": "module",
   "packageManager": "pnpm@7.29.0",
+  "author": {
+    "name": "Larry Williamson",
+    "email": "l422y@l422y.com",
+    "url": "https://l422y.com"
+  },
+  "keywords": [
+    "nuxt",
+    "vue",
+    "typescript",
+    "GA4",
+    "google-analytics",
+    "trending",
+    "popular",
+    "google-analytics-data-api"
+  ],
   "exports": {
     ".": {
       "types": "./dist/types.d.ts",
