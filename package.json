@@ -29,9 +29,10 @@
     "test:watch": "vitest watch"
   },
   "dependencies": {
-    "@nuxt/kit": "^3.2.3",
     "@google-analytics/data": "^3.2.1",
-    "defu": "^6.1.2"
+    "@nuxt/kit": "^3.2.3",
+    "defu": "^6.1.2",
+    "sass": "^1.58.3"
   },
   "devDependencies": {
     "@nuxt/eslint-config": "^0.1.1",
