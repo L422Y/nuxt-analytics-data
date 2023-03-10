@@ -1,8 +1,7 @@
 import { BetaAnalyticsDataClient } from "@google-analytics/data"
-import { ModuleOptions } from "../../module"
+import { AnalyticsReport, AnalyticsSummary, ModuleOptions } from "../../module"
 import { createStorage } from "unstorage"
 import memoryDriver from "unstorage/drivers/memory"
-import { AnalyticsReport, AnalyticsSummary } from "../types"
 import { defaultReports } from "../defaultReports"
 
 const storage = createStorage({
