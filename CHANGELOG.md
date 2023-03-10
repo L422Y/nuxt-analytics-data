@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v1.2.1
+
+[compare changes](https://undefined/undefined/compare/v1.2.0...v1.2.1)
+
+
+### 🩹 Fixes
+
+  - Replace timeout functionality, adjust config path (3e51d0f)
+
+### 🏡 Chore
+
+  - Update README.md and add package details (feb9164)
+
+### ❤️  Contributors
+
+- Larry W ([@L422Y](http://github.com/L422Y))
+
 ## v1.2.0
 
 [compare changes](https://undefined/undefined/compare/v1.1.2...v1.2.0)
