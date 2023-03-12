@@ -1,6 +1,23 @@
 # Changelog
 
 
+## v1.2.4
+
+[compare changes](https://undefined/undefined/compare/v1.2.3...v1.2.4)
+
+
+### 🩹 Fixes
+
+  - **deploy:** Opt for path.resolve (d0353f0)
+
+### 🏡 Chore
+
+  - **docs:** Fix spelling 🫠 (8e1cb2a)
+
+### ❤️  Contributors
+
+- Larry W ([@L422Y](http://github.com/L422Y))
+
 ## v1.2.3
 
 [compare changes](https://undefined/undefined/compare/v1.2.2...v1.2.3)
