@@ -1,6 +1,5 @@
 import { addComponent, addPlugin, addServerHandler, createResolver, defineNuxtModule } from "@nuxt/kit"
 import defu from "defu"
-import { fileURLToPath } from "node:url"
 import { defaultReports } from "./runtime/defaultReports"
 
 export type AnalyticsSummary = { [key: string]: AnalyticsReport }
@@ -63,7 +62,7 @@ export default defineNuxtModule<ModuleOptions>({
   } as ModuleOptions,
   setup(options, nuxt) {
     const {resolve} = createResolver(import.meta.url)
-    const runtimeDir = fileURLToPath(new URL("./runtime", import.meta.url))
+    const runtimeDir = resolve("./runtime")
     const pluginPath = resolve("./runtime/plugin")
 
     options.reports = {...options.reports, ...defaultReports}
@@ -87,7 +86,7 @@ export default defineNuxtModule<ModuleOptions>({
 
     addComponent({
       name: "AnalyticsWidget",
-      filePath: resolve(runtimeDir, 'components', 'AnalyticsWidget.vue')
+      filePath: resolve(runtimeDir, "components", "AnalyticsWidget.vue")
     })
 
     // nuxt.hook("prepare:types", (options) => {
