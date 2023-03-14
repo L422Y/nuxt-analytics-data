@@ -1,4 +1,5 @@
 {
   "private": true,
-  "name": "nuxt-analytics-data-playground"
+  "name": "nuxt-analytics-data-playground",
+  "version": "0.0.1"
 }
