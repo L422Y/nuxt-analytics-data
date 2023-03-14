@@ -1,14 +1,9 @@
 # Changelog
 
 
-## v1.2.5
+## v1.2.6
 
-[compare changes](https://undefined/undefined/compare/v0.0.4...v1.2.5)
-
-## v1.2.4
-
-[compare changes](https://undefined/undefined/compare/v1.2.3...v1.2.4)
-
+[compare changes](https://undefined/undefined/compare/v1.2.5...v1.2.6)
 
 ### 🩹 Fixes
 
