@@ -10,12 +10,18 @@ describe('ssr', async () => {
   it('renders the index page', async () => {
     // Get response to a server-rendered page with `$fetch`.
     const html = await $fetch('/')
-    expect(html).toContain('<th>Path</th><th>Popular</th><th>Trending</th>')
+    expect(html).toContain('<h2>Popular Data</h2>')
   })
 
-  it('filters paths from results', async () => {
-    // Get response to a server-rendered page with `$fetch`.
+  it('filters exact paths from results', async () => {
     const html = await $fetch('/')
-    expect(html).toContain('<td>/blog</td><td>false</td><td>false</td>')
+    expect(html).toMatch(/::\/blog\/.*::/)
+    expect(html).not.toContain('::/blog::')
+  })
+
+  it('filters regEx paths from results', async () => {
+    const html = await $fetch('/')
+    expect(html).not.toMatch(/::\/projects\/.*::/)
+    expect(html).toContain('::/projects::')
   })
 })
