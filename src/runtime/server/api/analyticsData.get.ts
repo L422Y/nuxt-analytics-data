@@ -1,4 +1,4 @@
-import { appendHeader, defineEventHandler, getQuery, } from "h3"
+import { appendHeader, defineEventHandler, defineLazyEventHandler, getQuery, } from "h3"
 import { QueryObject } from "ufo"
 import { useGoogleAnalyticsDataReports } from "../../composables/useGoogleAnalyticsDataReports"
 import { useRuntimeConfig } from "#imports"
