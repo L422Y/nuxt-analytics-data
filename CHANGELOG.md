@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.2.9
+
+[compare changes](https://undefined/undefined/compare/v1.2.8...v1.2.9)
+
+
+### 🩹 Fixes
+
+  - **imports:** Explicit import of `defineLazyEventHandler` (0a0cbad)
+
+### ❤️  Contributors
+
+- Larry W ([@L422Y](http://github.com/L422Y))
+
 ## v1.2.8
 
 [compare changes](https://undefined/undefined/compare/v1.2.7...v1.2.8)
