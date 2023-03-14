@@ -2,18 +2,11 @@ import { addComponent, addPlugin, addServerHandler, createResolver, defineNuxtMo
 import defu from "defu"
 import { defaultReports } from "./runtime/defaultReports"
 
-export type AnalyticsSummary = { [key: string]: AnalyticsReport }
-export type AnalyticsReport = { [key: string]: any }
-
-export enum AnalyticsWidgetType {
-  POPULAR = "popular",
-  TRENDING = "trending"
-}
-
 export interface IFilterExpressions {
   exact?: string[]
   regEx?: string[]
 }
+
 export interface ModuleOptions {
   /**
    * Half-life of cache (in seconds)
@@ -88,6 +81,7 @@ export default defineNuxtModule<ModuleOptions>({
       name: "AnalyticsWidget",
       filePath: resolve(runtimeDir, "components", "AnalyticsWidget.vue")
     })
+
 
     // nuxt.hook("prepare:types", (options) => {
     //   options.references.push({path: resolve(nuxt.options.buildDir, "types/index.d.ts")})

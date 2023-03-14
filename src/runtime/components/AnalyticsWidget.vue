@@ -27,7 +27,7 @@
 <script lang="ts" setup>
 import { ref, usePopular, useTrending } from "#imports"
 import { Ref } from "vue"
-import { AnalyticsReport, AnalyticsWidgetType } from "../../module"
+import { AnalyticsReport, AnalyticsWidgetType } from "../types"
 
 const props = defineProps<{ listType: AnalyticsWidgetType, label: string, showViews: boolean }>()
 let items: Ref<AnalyticsReport> = ref([])
