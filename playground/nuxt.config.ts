@@ -1,8 +1,6 @@
-import NuxtAnalyticsData from "../src/module"
-
 export default defineNuxtConfig({
   modules: [
-    NuxtAnalyticsData
+    "../src/module"
   ],
   analyticsData: {
     cacheTimeout: 15 * 60,
