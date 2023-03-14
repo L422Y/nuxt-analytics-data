@@ -1,6 +1,24 @@
 # Changelog
 
 
+## v1.2.8
+
+[compare changes](https://undefined/undefined/compare/v1.2.7...v1.2.8)
+
+
+### 🩹 Fixes
+
+  - Imports (1b78434)
+
+### 🏡 Chore
+
+  - **tests:** Update tests (39c135a)
+  - **tests:** Update .eslintrc (c1f50cf)
+
+### ❤️  Contributors
+
+- Larry W ([@L422Y](http://github.com/L422Y))
+
 ## v1.2.7
 
 [compare changes](https://undefined/undefined/compare/v1.2.6...v1.2.7)
