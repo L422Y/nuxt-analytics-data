@@ -105,7 +105,11 @@ export const useGoogleAnalyticsDataReports = async (config: any, analyticsCache:
             const metricValue = <string>row.metricValues[idx].value
             item[metricKey] = metricValue
           }
-          results[pagePath] = item
+          if (results[pagePath]) {
+            results[pagePath].screenPageViews = parseInt(results[pagePath].screenPageViews) + parseInt(item.screenPageViews)
+          } else {
+            results[pagePath] = item
+          }
         }
       }
     }
