@@ -1,7 +1,7 @@
 import { useNuxtApp, useRoute, useRuntimeConfig, useState } from "#app"
 import { ref } from "#imports"
 import { Ref, watch } from "vue"
-import { AnalyticsSummary } from "../../module"
+import { AnalyticsSummary } from "../types"
 
 export const usePageTrending = async (path?: string | undefined) => {
   if (!path) {
@@ -11,7 +11,7 @@ export const usePageTrending = async (path?: string | undefined) => {
   if (path !== undefined) {
     const response: Ref<boolean> = ref(false)
     const config = useRuntimeConfig()
-    const analyticsData = await useState<AnalyticsSummary>("analyticsData", () => ( {} ))
+    const analyticsData = useState<AnalyticsSummary>("analyticsData", () => ( {} ))
     const {exact} = config.analyticsData
 
     if (!exact && path != "/") {

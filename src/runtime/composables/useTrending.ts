@@ -1,8 +1,8 @@
 import { useState } from "#app"
 import { computed } from "vue"
-import { AnalyticsSummary } from "../../module"
+import { AnalyticsSummary } from "../types"
 
 export const useTrending = async () => {
-  const analyticsData = await useState<AnalyticsSummary>("analyticsData")
+  const analyticsData = useState<AnalyticsSummary>("analyticsData")
   return computed(() => analyticsData?.value?.trending)
 }
