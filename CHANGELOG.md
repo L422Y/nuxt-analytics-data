@@ -1,6 +1,19 @@
 # Changelog
 
 
+## v1.2.12
+
+[compare changes](https://undefined/undefined/compare/v1.2.9...v1.2.12)
+
+
+### 🩹 Fixes
+
+  - Update version number in package.json and modify useGoogleAnalyticsDataReports.ts to handle duplicate pagePath entries by summing their screenPageViews values (e93d1fb)
+
+### ❤️  Contributors
+
+- Larry W ([@L422Y](http://github.com/L422Y))
+
 ## v1.2.9
 
 [compare changes](https://undefined/undefined/compare/v1.2.8...v1.2.9)
