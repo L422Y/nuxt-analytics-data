@@ -25,7 +25,7 @@ export default defineLazyEventHandler(async () => {
 
     const query: QueryObject = getQuery(event)
     let path: string = query.path as string
-    const config = await useRuntimeConfig()
+    const config = useRuntimeConfig()
     if (!config.analyticsData.exact && path != "/") {
       path = path.replace(/\/$/, "")
     }

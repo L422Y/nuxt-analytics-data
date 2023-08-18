@@ -1,18 +1,21 @@
+import { NuxtConfig } from "@nuxt/schema"
+
 interface IQueryObjectOptions {
   propertyId: string
   limit: number
   filteredPaths?: string[]
-  expressions: any[]
+  expressions: any[],
+  startDate?: string
 }
 
 export const defaultReports = {
-  popular: ({propertyId, limit, expressions}: IQueryObjectOptions) => {
+  popular: ({propertyId, limit, expressions, startDate}: IQueryObjectOptions) => {
     const query = {
       property: `properties/${propertyId}`,
       limit,
       dateRanges: [
         {
-          startDate: "30daysAgo",
+          startDate: startDate || "30daysAgo",
           endDate: "today",
         },
       ],

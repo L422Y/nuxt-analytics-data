@@ -26,6 +26,7 @@ export interface ModuleOptions {
     client_x509_cert_url: string
   }
   reports?: { [key: string]: Function }
+  parameters?: { [key: string]: { startDate?: string, endDate?: string } }
   propertyId: string
   endpoint?: string
   /**
@@ -51,7 +52,7 @@ export default defineNuxtModule<ModuleOptions>({
     exact: false,
     reports: {},
     cacheTimeout: 60 * 30,
-    limit: 20
+    limit: 20,
   } as ModuleOptions,
   setup(options, nuxt) {
     const {resolve} = createResolver(import.meta.url)

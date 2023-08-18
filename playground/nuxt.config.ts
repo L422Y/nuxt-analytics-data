@@ -14,6 +14,11 @@ export default defineNuxtConfig({
     removeStrings: {
       exact: [` - Larry Williamson`],
       regEx: [` - .* - Larry Williamson`]
+    },
+    parameters: {
+        "popular": {
+            startDate: "1990-01-01",
+        }
     }
   }
 })
