@@ -10,9 +10,9 @@ export const usePageTrending = async (path?: string | undefined) => {
 
   if (path !== undefined) {
     const response: Ref<boolean> = ref(false)
-    const config = useRuntimeConfig()
+    const config = useRuntimeConfig().public.analyticsData
     const analyticsData = useState<AnalyticsSummary>("analyticsData", () => ( {} ))
-    const {exact} = config.analyticsData
+    const {exact} = config
 
     if (!exact && path != "/") {
       path = path.replace(/\/$/, "")
